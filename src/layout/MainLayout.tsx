@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import { Toaster } from "sonner";
 import SupportContact from "../components/SupportContact";
+import Footer from "../components/Footer";
 
 function Sidebar({
   links,
@@ -61,7 +62,7 @@ function Sidebar({
 export function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const links = [
-    { name: "🏠 Dashboard", to: "/app/dashboard" },
+    { name: "Upload", to: "/app/dashboard" },
     { name: "🤖 AI", to: "/app/ai" },
     { name: "📖 Recipes", to: "/app/recipes" },
     { name: "📊 Nutrition", to: "/app/nutrition" },
@@ -112,6 +113,8 @@ export function Layout() {
       <main className="flex-1">
         <Outlet />
       </main>
+
+      <Footer />
 
       <SupportContact />
       <Toaster position="top-right" richColors />
