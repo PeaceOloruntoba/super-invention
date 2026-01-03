@@ -43,7 +43,7 @@ export default function Navbar() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
-      <nav className="flex flex-wrap gap-2 mb-8 bg-white rounded-xl p-2 shadow-lg">
+      <nav className="flex flex-wrap gap-2 bg-white rounded-xl p-2 shadow-lg">
         {navItem.map((tab) => (
           <NavLink
             to={tab.link}
