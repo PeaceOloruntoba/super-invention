@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import { Toaster } from "sonner";
+import SupportContact from "../components/SupportContact";
 
 function Sidebar({
   links,
