@@ -3,6 +3,8 @@ import { Link, NavLink, Outlet } from "react-router";
 import { Toaster } from "sonner";
 import SupportContact from "../components/SupportContact";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
+import Navbar from "../components/Navbar";
 
 function Sidebar({
   links,
@@ -73,38 +75,9 @@ export function Layout() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      {/* HEADER */}
-      <header className="sticky top-0 z-10 bg-primary shadow-md">
-        <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
-          <Link to="/" className="font-bold text-white text-lg md:text-xl">
-            Bunzi
-          </Link>
-
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-4 text-sm">
-            {links.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className={({ isActive }) =>
-                  isActive ? "text-accent font-semibold" : "text-white/90 hover:text-accent transition"
-                }
-              >
-                {link.name}
-              </NavLink>
-            ))}
-          </nav>
-
-          {/* Mobile Hamburger */}
-          <button
-            className="md:hidden text-white text-2xl"
-            onClick={() => setSidebarOpen(true)}
-          >
-            ☰
-          </button>
-        </div>
-      </header>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+      <Header />
+      <Navbar />
 
       {/* Mobile Sidebar */}
       <Sidebar links={links} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
@@ -136,7 +109,7 @@ export function AdminLayout() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       {/* HEADER */}
       <header className="sticky top-0 z-10 bg-primary shadow-md">
         <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">

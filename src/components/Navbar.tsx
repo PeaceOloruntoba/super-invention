@@ -7,10 +7,12 @@ import {
   Trophy,
   Upload,
 } from "lucide-react";
-import { flashcards, materials, quizzes } from "../data/dummy";
 import { NavLink } from "react-router";
+import { useStudyData } from "../data/useStudyData";
 
 export default function Navbar() {
+  const { materials, flashcards, quizzes } = useStudyData();
+
   const navItem = [
     { id: "upload", link: "", icon: Upload, label: "Upload" },
     {
@@ -18,7 +20,7 @@ export default function Navbar() {
       link: "materials",
       icon: BookOpen,
       label: "Materials",
-      badge: materials.length,
+      badge: materials?.length,
     },
     {
       id: "flashcards",
@@ -40,21 +42,26 @@ export default function Navbar() {
   ];
 
   return (
-    <div>
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
       <nav className="flex flex-wrap gap-2 mb-8 bg-white rounded-xl p-2 shadow-lg">
         {navItem.map((tab) => (
           <NavLink
             to={tab.link}
             key={tab.id}
             className={({ isActive }) =>
-              isActive
-                ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md"
-                : "text-gray-600 hover:bg-gray-100"
+              `
+                flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all
+                ${
+                  isActive
+                    ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md"
+                    : "text-gray-600 hover:bg-gray-100"
+                }
+              `
             }
           >
             <tab.icon className="w-5 h-5" />
             {tab.label}
-            {tab.badge && tab.badge > 0 && (
+            {typeof tab.badge === "number" && tab.badge > 0 && (
               <span className="bg-white text-indigo-600 text-xs px-2 py-1 rounded-full font-bold">
                 {tab.badge}
               </span>
