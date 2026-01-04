@@ -3,16 +3,17 @@ import { useStudyData } from "../data/useStudyData";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
+import { Upload } from "lucide-react";
 
 export default function Upload() {
   const { materials, setMaterials } = useStudyData();
   const [loading, setLoading] = useState(false);
   const [currentMaterial, setCurrentMaterial] = useState(null);
-  currentMaterial
+  currentMaterial;
   setLoading(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleFileUpload = async (e: { target: { files: any[]; }; }) => {
+  const handleFileUpload = async (e: { target: { files: any[] } }) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -60,7 +61,7 @@ export default function Upload() {
 
         const data = await response.json();
         const summary =
-          data.content.find((c: { type: string; }) => c.type === "text")?.text ||
+          data.content.find((c: { type: string }) => c.type === "text")?.text ||
           "Summary not available";
 
         const newMaterial = {
@@ -73,9 +74,7 @@ export default function Upload() {
 
         setMaterials((prev: any) => [...prev, newMaterial]);
         setCurrentMaterial(newMaterial);
-        toast.success(
-          "✅ Material uploaded and summarized successfully!"
-        );
+        toast.success("✅ Material uploaded and summarized successfully!");
         navigate("/materials");
       };
 
