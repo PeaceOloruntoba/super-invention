@@ -14,7 +14,7 @@ export default function Navbar() {
   const { materials, flashcards, quizzes } = useStudyData();
 
   const navItem = [
-    { id: "upload", link: "", icon: Upload, label: "Upload" },
+    { id: "upload", link: "upload", icon: Upload, label: "Upload" },
     {
       id: "materials",
       link: "materials",
