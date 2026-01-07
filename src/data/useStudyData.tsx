@@ -1,5 +1,13 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
-import { dummyFlashcards, dummyMaterials, dummyPlan, dummyQuiz, dummySemesterPlan, dummyThread } from "./dummy";
+import { createContext, useContext, useMemo, useState } from "react";
+import type { Dispatch, ReactNode, SetStateAction } from "react";
+import {
+  dummyFlashcards,
+  dummyMaterials,
+  dummyPlan,
+  dummyQuiz,
+  dummySemesterPlan,
+  dummyThread,
+} from "./dummy";
 
 export type MATERIAL = {
   id: number;
@@ -62,27 +70,32 @@ type ChatMessage = { role: "user" | "assistant"; content: string };
 
 type StudyDataContextType = {
   materials: MATERIAL[];
-  setMaterials: React.Dispatch<React.SetStateAction<MATERIAL[]>>;
+  setMaterials: Dispatch<SetStateAction<MATERIAL[]>>;
   flashcards: FlashcardDeck[];
-  setFlashcards: React.Dispatch<React.SetStateAction<FlashcardDeck[]>>;
+  setFlashcards: Dispatch<SetStateAction<FlashcardDeck[]>>;
   quizzes: Quiz[];
-  setQuizzes: React.Dispatch<React.SetStateAction<Quiz[]>>;
+  setQuizzes: Dispatch<SetStateAction<Quiz[]>>;
   studyPlan: StudyPlan | null;
-  setStudyPlan: React.Dispatch<React.SetStateAction<StudyPlan | null>>;
+  setStudyPlan: Dispatch<SetStateAction<StudyPlan | null>>;
   semesterPlan: SemesterPlan | null;
-  setSemesterPlan: React.Dispatch<React.SetStateAction<SemesterPlan | null>>;
+  setSemesterPlan: Dispatch<SetStateAction<SemesterPlan | null>>;
   chat: ChatMessage[];
-  setChat: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
+  setChat: Dispatch<SetStateAction<ChatMessage[]>>;
 };
 
-const StudyDataContext = createContext<StudyDataContextType | undefined>(undefined);
+const StudyDataContext = createContext<StudyDataContextType | undefined>(
+  undefined
+);
 
-export function StudyDataProvider({ children }: { children: React.ReactNode }) {
+export function StudyDataProvider({ children }: { children: ReactNode }) {
   const [materials, setMaterials] = useState<MATERIAL[]>(dummyMaterials);
-  const [flashcards, setFlashcards] = useState<FlashcardDeck[]>(dummyFlashcards);
+  const [flashcards, setFlashcards] =
+    useState<FlashcardDeck[]>(dummyFlashcards);
   const [quizzes, setQuizzes] = useState<Quiz[]>(dummyQuiz);
   const [studyPlan, setStudyPlan] = useState<StudyPlan | null>(dummyPlan);
-  const [semesterPlan, setSemesterPlan] = useState<SemesterPlan | null>(dummySemesterPlan);
+  const [semesterPlan, setSemesterPlan] = useState<SemesterPlan | null>(
+    dummySemesterPlan
+  );
   const [chat, setChat] = useState<ChatMessage[]>(dummyThread);
 
   const value = useMemo(
@@ -103,11 +116,16 @@ export function StudyDataProvider({ children }: { children: React.ReactNode }) {
     [materials, flashcards, quizzes, studyPlan, semesterPlan, chat]
   );
 
-  return <StudyDataContext.Provider value={value}>{children}</StudyDataContext.Provider>;
+  return (
+    <StudyDataContext.Provider value={value}>
+      {children}
+    </StudyDataContext.Provider>
+  );
 }
 
 export function useStudyData() {
   const ctx = useContext(StudyDataContext);
-  if (!ctx) throw new Error("useStudyData must be used within StudyDataProvider");
+  if (!ctx)
+    throw new Error("useStudyData must be used within StudyDataProvider");
   return ctx;
 }

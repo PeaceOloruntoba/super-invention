@@ -3,7 +3,7 @@ import { useStudyData } from "../data/useStudyData";
 import { toast } from "sonner";
 
 export default function Materials() {
-  const { materials, flashcards, setFlashcards, quizzes, setQuizzes } = useStudyData();
+  const { materials, setFlashcards, setQuizzes } = useStudyData();
 
   const generateFlashcards = (materialId: number) => {
     const material = materials.find((m) => m.id === materialId);
