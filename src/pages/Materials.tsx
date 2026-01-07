@@ -1,5 +1,5 @@
 import { BookOpen, Brain, Trophy } from "lucide-react";
-import { useStudyData } from "../data/useStudyData";
+import { useStudyData } from "../data/useStudyData.tsx";
 import { toast } from "sonner";
 
 export default function Materials() {

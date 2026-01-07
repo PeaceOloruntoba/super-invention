@@ -96,7 +96,7 @@ export function StudyDataProvider({ children }: { children: ReactNode }) {
   const [semesterPlan, setSemesterPlan] = useState<SemesterPlan | null>(
     dummySemesterPlan
   );
-  const [chat, setChat] = useState<ChatMessage[]>(dummyThread);
+  const [chat, setChat] = useState<ChatMessage[]>([...dummyThread]);
 
   const value = useMemo(
     () => ({

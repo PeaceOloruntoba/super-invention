@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Check, Trophy } from "lucide-react";
-import { useStudyData } from "../data/useStudyData";
+import { useStudyData } from "../data/useStudyData.tsx";
 
 export default function Quiz() {
   const { quizzes } = useStudyData();

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useStudyData } from "../data/useStudyData";
+import { useStudyData } from "../data/useStudyData.tsx";
 
 export default function QA() {
   const { chat, setChat } = useStudyData();

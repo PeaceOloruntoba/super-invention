@@ -9,7 +9,7 @@ import StudyPlan from "./pages/StudyPlan";
 import QA from "./pages/Q&A";
 import SemesterPlan from "./pages/SemesterPlan";
 import Dashboard from "./pages/admin/Dashboard";
-import { StudyDataProvider } from "./data/useStudyData";
+import { StudyDataProvider } from "./data/useStudyData.tsx";
 
 export default function App() {
   return (

@@ -1,5 +1,5 @@
 import { Loader2, Upload as UploadIcon } from "lucide-react";
-import { useStudyData } from "../data/useStudyData";
+import { useStudyData } from "../data/useStudyData.tsx";
 import { useState, type ChangeEvent } from "react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";

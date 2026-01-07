@@ -8,7 +8,7 @@ import {
   Upload,
 } from "lucide-react";
 import { NavLink } from "react-router";
-import { useStudyData } from "../data/useStudyData";
+import { useStudyData } from "../data/useStudyData.tsx";
 
 export default function Navbar() {
   const { materials, flashcards, quizzes } = useStudyData();

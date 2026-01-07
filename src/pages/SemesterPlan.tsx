@@ -1,5 +1,5 @@
 import { Clock } from "lucide-react";
-import { useStudyData } from "../data/useStudyData";
+import { useStudyData } from "../data/useStudyData.tsx";
 
 export default function SemesterPlan() {
   const { semesterPlan } = useStudyData();
