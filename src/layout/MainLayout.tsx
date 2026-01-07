@@ -46,7 +46,7 @@ function Sidebar({
               key={link.to}
               to={link.to}
               onClick={onClose}
-              className={({ isActive }) =>
+              className={({ isActive }: { isActive: boolean }) =>
                 `text-white/90 hover:text-accent transition ${
                   isActive ? "text-accent font-semibold" : ""
                 }`
@@ -123,7 +123,7 @@ export function AdminLayout() {
               <NavLink
                 key={link.to}
                 to={link.to}
-                className={({ isActive }) =>
+                className={({ isActive }: { isActive: boolean }) =>
                   isActive ? "text-accent font-semibold" : "text-white/90 hover:text-accent transition"
                 }
               >

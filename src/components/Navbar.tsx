@@ -27,18 +27,18 @@ export default function Navbar() {
       link: "flashcards",
       icon: Brain,
       label: "Flashcards",
-      badge: flashcards.length,
+      badge: flashcards?.length,
     },
     {
       id: "quiz",
       link: "quiz",
       icon: Trophy,
       label: "Quiz",
-      badge: quizzes.length,
+      badge: quizzes?.length,
     },
-    { id: "plan", link: "plan", icon: Calendar, label: "Study Plan" },
-    { id: "semester", link: "semester", icon: Clock, label: "Semester Plan" },
-    { id: "chat", link: "chat", icon: MessageSquare, label: "Q&A" },
+    { id: "plan", link: "study-plan", icon: Calendar, label: "Study Plan" },
+    { id: "semester", link: "semester-plan", icon: Clock, label: "Semester Plan" },
+    { id: "chat", link: "q-a", icon: MessageSquare, label: "Q&A" },
   ];
 
   return (
@@ -48,7 +48,7 @@ export default function Navbar() {
           <NavLink
             to={tab.link}
             key={tab.id}
-            className={({ isActive }) =>
+            className={({ isActive }: { isActive: boolean }) =>
               `
                 flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all
                 ${

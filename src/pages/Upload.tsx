@@ -1,4 +1,4 @@
-import { Loader2 } from "lucide-react";
+import { Loader2, Upload as UploadIcon } from "lucide-react";
 import { useStudyData } from "../data/useStudyData";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -8,9 +8,7 @@ import { Upload } from "lucide-react";
 export default function Upload() {
   const { materials, setMaterials } = useStudyData();
   const [loading, setLoading] = useState(false);
-  const [currentMaterial, setCurrentMaterial] = useState(null);
-  currentMaterial;
-  setLoading(false);
+  // no need to keep currentMaterial locally for now
   const navigate = useNavigate();
 
   const handleFileUpload = async (e: { target: { files: any[] } }) => {
@@ -25,55 +23,24 @@ export default function Upload() {
     setLoading(true);
 
     try {
+      // Simulate reading and summarization locally
       const reader = new FileReader();
-      reader.onload = async (event) => {
-        const base64Data = event.target?.result?.split(",")[1];
+      reader.onload = async () => {
+        const placeholderSummary =
+          "This is a placeholder summary generated locally. Replace with backend API later. Covers key concepts, main ideas, and exam-focused takeaways.";
 
-        const response = await fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model: "claude-sonnet-4-20250514",
-            max_tokens: 1000,
-            messages: [
-              {
-                role: "user",
-                content: [
-                  {
-                    type: "document",
-                    source: {
-                      type: "base64",
-                      media_type: "application/pdf",
-                      data: base64Data,
-                    },
-                  },
-                  {
-                    type: "text",
-                    text: "Please provide a comprehensive summary of this study material in 3-5 paragraphs. Focus on key concepts, main ideas, and important details that would be useful for exam preparation.",
-                  },
-                ],
-              },
-            ],
-          }),
-        });
-
-        const data = await response.json();
-        const summary =
-          data.content.find((c: { type: string }) => c.type === "text")?.text ||
-          "Summary not available";
+        // Simulate processing time
+        await new Promise((res) => setTimeout(res, 800));
 
         const newMaterial = {
           id: Date.now(),
           name: file.name,
           uploadDate: new Date().toISOString(),
-          summary: summary,
+          summary: placeholderSummary,
           file: file,
-        };
+        } as any;
 
         setMaterials((prev: any) => [...prev, newMaterial]);
-        setCurrentMaterial(newMaterial);
         toast.success("✅ Material uploaded and summarized successfully!");
         navigate("/materials");
       };
@@ -90,7 +57,7 @@ export default function Upload() {
   return (
     <div>
       <div className="text-center">
-        <Upload className="w-20 h-20 text-indigo-600 mx-auto mb-6" />
+        <UploadIcon className="w-20 h-20 text-indigo-600 mx-auto mb-6" />
         <h2 className="text-3xl font-bold mb-4">Upload Study Materials</h2>
         <p className="text-gray-600 mb-8">
           Upload PDF notes or lecture materials to get started
