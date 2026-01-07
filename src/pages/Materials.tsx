@@ -17,7 +17,7 @@ export default function Materials() {
         { question: "Name a concept from the summary.", answer: material.summary.split(" ").slice(0, 6).join(" ") + "..." },
       ],
     };
-    setFlashcards((prev) => [...prev, deck] as any);
+    setFlashcards((prev) => [...prev, deck]);
     toast.success("🎴 Flashcards generated (dummy)");
   };
 
@@ -43,7 +43,7 @@ export default function Materials() {
         },
       ],
     };
-    setQuizzes((prev) => [...prev, quiz] as any);
+    setQuizzes((prev) => [...prev, quiz]);
     toast.success("📝 Quiz generated (dummy)");
   };
 

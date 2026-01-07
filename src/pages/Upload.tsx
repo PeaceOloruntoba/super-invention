@@ -1,9 +1,8 @@
 import { Loader2, Upload as UploadIcon } from "lucide-react";
 import { useStudyData } from "../data/useStudyData";
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
-import { Upload } from "lucide-react";
 
 export default function Upload() {
   const { materials, setMaterials } = useStudyData();
@@ -11,8 +10,8 @@ export default function Upload() {
   // no need to keep currentMaterial locally for now
   const navigate = useNavigate();
 
-  const handleFileUpload = async (e: { target: { files: any[] } }) => {
-    const file = e.target.files[0];
+  const handleFileUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (!file) return;
 
     if (file.type !== "application/pdf") {
@@ -79,7 +78,7 @@ export default function Upload() {
               </>
             ) : (
               <>
-                <Upload className="w-5 h-5" />
+                <UploadIcon className="w-5 h-5" />
                 Choose PDF File
               </>
             )}
